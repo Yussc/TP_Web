@@ -1,0 +1,81 @@
+/* Style pour la calculatrice */
+
+body {
+    background-color: #333;
+    font-family: Arial, sans-serif;
+  }
+  
+  form {
+    width: 300px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #DEDCDA;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  }
+  
+  input[type="text"] {
+    display: block;
+    margin: 0 auto 20px;
+    padding: 10px;
+    font-size: 24px;
+    text-align: right;
+    width: 90%;
+    border: none;
+    border-color:#333;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1) inset;
+    background-color: #fff;
+    color: #333;
+  }
+  
+  input[type="button"] {
+    display: inline-block;
+    width: 60px;
+    height: 60px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    font-size: 24px;
+    text-align: center;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    background-color: #f8f8f8;
+    color: #333;
+    cursor: pointer;
+    transition: all 0.1s ease-in-out;
+  }
+  
+  input[type="button"]:hover {
+    background-color: #333;
+    color: azure;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  input[type="button"]:active {
+    transform: scale(0.95);
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
+    background-color: #ccc;
+  }
+  
+  /* Animation pour les boutons */
+  
+  @keyframes pulse {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.2);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+  
+  input[type="button"].active {
+    animation: pulse 0.3s ease-in-out;
+  }
+  
+  input#clearButton{
+    background-color: #FFD93D;
+  }
