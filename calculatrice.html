@@ -1,105 +1,45 @@
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
+    <meta charset="UTF-8">
     <title>Calculatrice</title>
+    <link rel="icon" href="calc.png">
     <link rel="stylesheet" href="calculatrice.css">
+</head>
+<body>
 
-    <script>
-      function addToResult(value) { 
-// Fonction appelée lorsqu'un bouton est cliqué, qui ajoute la valeur du bouton à l'affichage de la calculatrice
-        if (document.getElementById("result").value == "0") {
-          document.getElementById("result").value = "";
-        }
-        document.getElementById("result").value += value;
-      }
+    <div id="resultat"></div>
 
-      function clearResult() { 
-// Fonction appelée lorsque le bouton "C" est cliqué, qui réinitialise l'affichage de la calculatrice
-        document.getElementById("result").value = "0";
-        EnableButtonsExceptClear(); //Rend les boutons utilisables.
-      }
+    <div class="calculator">
+      <input type="text" id="result" readonly />
+      <input type="text" id="input" readonly />
 
-      function calculateResult() {
-// Fonction appelée lorsque le bouton "=" est cliqué, qui évalue l'expression affichée et affiche le résultat
-        var result = document.getElementById("result").value;
-        if (result.indexOf('++') != -1 || result.indexOf('--') != -1 || result.indexOf('**') != -1 || result.indexOf('//') != -1 || result.endsWith('+') || result.endsWith('-') || result.endsWith('*') || result.endsWith('/')) {
-//Condition importante qui renvoie un message d'erreur si le calcul est invalide.
-          document.getElementById("result").value = "Erreur";
-          disableButtonsExceptClear(); //Désactive tous les boutons sauf "C" afin d'empêcher un affichage non désiré.
-        } else {
-          try {
-            result = eval(result); //La fonction eval() permet d'évaluer du code JavaScript représenté sous forme d'une chaîne de caractères
-            document.getElementById("result").value = result;
-            disableButtonsExceptClear();
-          } catch (e) { 
-            document.getElementById("result").value = "Erreur";
-            disableButtonsExceptClear();
-          }
-        }
-      }
-      
-      function disableButtonsExceptClear() { //Cette fonction permet de désactiver tous les boutons sauf "C".
-        var buttons = document.getElementsByTagName("input");
-        for (var i = 0; i < buttons.length; i++) {//On utilise ici une boucle for afin de parcourir tous les boutons et les désactivés un à un.
-          if (buttons[i].type == "button" && buttons[i].value != "C") {
-            buttons[i].disabled = true;
-          }
-        }
-      }
+      <input type="button" value="(" onclick="calculator.add('(')" />
+      <input type="button" value=")" onclick="calculator.add(')')" />
+      <input type="button" value="C" class="clear" onclick="calculator.clearInput()" />
+      <input type="button" value="/" class="operator" onclick="calculator.add('/')" />
 
-      function EnableButtonsExceptClear() { // Cette fonction réactive tous les boutons.
-        var buttons = document.getElementsByTagName("input");
-        for (var i = 0; i < buttons.length; i++) {
-          if (buttons[i].type == "button" && buttons[i].value != "C") {
-            buttons[i].disabled = false;
-          }
-        }
-      }
+      <input type="button" value="7" onclick="calculator.add('7')" />
+      <input type="button" value="8" onclick="calculator.add('8')" />
+      <input type="button" value="9" onclick="calculator.add('9')" />
+      <input type="button" value="*" class="operator" onclick="calculator.add('*')" />
 
-    </script>
-  </head>
+      <input type="button" value="4" onclick="calculator.add('4')" />
+      <input type="button" value="5" onclick="calculator.add('5')" />
+      <input type="button" value="6" onclick="calculator.add('6')" />
+      <input type="button" value="-" class="operator" onclick="calculator.add('-')" />
 
-  <body>
-    <form>
+      <input type="button" value="1" onclick="calculator.add('1')" />
+      <input type="button" value="2" onclick="calculator.add('2')" />
+      <input type="button"value="3" onclick="calculator.add('3')" />
+      <input type="button" value="+" class="operator" onclick="calculator.add('+')" />
 
-      <input type="text" id="result" name="result" value="0" readonly>
+      <input type="button" value="0" onclick="calculator.add('0')" />
+      <input type="button" value="." onclick="calculator.add('.')" />
+      <input type="button" value="=" class="operator" onclick="calculator.calcul()" />
+      <input type="button" value="&larr;" class="undo" onclick="calculator.buttonreturn()" />
 
-      <br>
-      
-      <input type="button" value="(" onclick="addToResult('(')"> 
-      <!--On place addToResult avec un "onclick" afin d'afficher le bouton souhaité lorsqu'on clique sur le bouton.-->
-      <input type="button" value=")" onclick="addToResult(')')">
-      <input type="button" value="%" onclick="addToResult('%')">
-      <input type="button" value="C" onclick="clearResult()" id="clearButton">
-      
-      <br>
-      
-      <input type="button" value="7" onclick="addToResult(7)">
-      <input type="button" value="8" onclick="addToResult(8)">
-      <input type="button" value="9" onclick="addToResult(9)">
-      <input type="button" value="/" onclick="addToResult('/')">
-      
-      <br>
-      
-      <input type="button" value="4" onclick="addToResult(4)">
-      <input type="button" value="5" onclick="addToResult(5)">
-      <input type="button" value="6" onclick="addToResult(6)">
-      <input type="button" value="*" onclick="addToResult('*')">
-      
-      <br>
-      
-      <input type="button" value="1" onclick="addToResult(1)">
-      <input type="button" value="2" onclick="addToResult(2)">
-      <input type="button" value="3" onclick="addToResult(3)">
-      <input type="button" value="-" onclick="addToResult('-')">
-      
-      <br>
-      
-      <input type="button" value="0" onclick="addToResult(0)">
-      <input type="button" value="." onclick="addToResult('.')">
-      <input type="button" value="=" onclick="calculateResult()">
-      <input type="button" value="+" onclick="addToResult('+')">
-      
-    </form>
-  </body>
+    </div>
+    <script src="calculatrice.js"></script>
+</body>
 </html>
